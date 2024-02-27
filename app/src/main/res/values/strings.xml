@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">RoomSample</string>
+    <string name="save">Save</string>
+    <string name="enter_user_name">Enter User Name</string>
+    <string name="enter_your_user_name">Enter your user name</string>
+    <string name="enter_nick_name">Enter Nick Name</string>
+    <string name="enter_your_nick_name">Enter your nick name</string>
 </resources>
