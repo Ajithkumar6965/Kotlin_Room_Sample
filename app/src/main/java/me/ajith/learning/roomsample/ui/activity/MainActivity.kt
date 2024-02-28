@@ -9,7 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import me.ajith.learning.roomsample.ui.fragment.MainFragment
 import me.ajith.learning.roomsample.R
+import me.ajith.learning.roomsample.common.DatabaseBuilder
+import me.ajith.learning.roomsample.common.ViewModelFactory
 import me.ajith.learning.roomsample.data.User
+import me.ajith.learning.roomsample.data.local.DatabaseHelperImpl
 import me.ajith.learning.roomsample.viewmodel.MainViewModel
 import java.util.Locale
 
@@ -43,7 +46,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun setupViewModel(){
-        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        mainViewModel = ViewModelProvider(this, ViewModelFactory(DatabaseHelperImpl(DatabaseBuilder.getDbInstance(applicationContext))))[MainViewModel::class.java]
     }
 
     override fun onClick(v: View?) {
@@ -64,7 +67,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 Toast.makeText(this,"User name already available !!!",Toast.LENGTH_SHORT).show()
                 return
             }
-            val user = User(edUserName.text.toString(),edUserNickName.text.toString())
+            val user = User(userName = edUserName.text.toString(), userNickname = edUserNickName.text.toString())
             mainViewModel.addUserData(user)
         }
     }

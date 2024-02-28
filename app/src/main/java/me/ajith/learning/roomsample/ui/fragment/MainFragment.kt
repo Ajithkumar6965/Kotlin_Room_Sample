@@ -9,9 +9,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import me.ajith.learning.roomsample.R
+import me.ajith.learning.roomsample.common.DatabaseBuilder
 import me.ajith.learning.roomsample.common.ViewModelFactory
 import me.ajith.learning.roomsample.data.User
 import me.ajith.learning.roomsample.data.UserAdapter
+import me.ajith.learning.roomsample.data.local.DatabaseHelperImpl
 import me.ajith.learning.roomsample.viewmodel.MainViewModel
 
 class MainFragment:Fragment() {
@@ -58,7 +60,7 @@ class MainFragment:Fragment() {
     }
 
     private fun setupViewModel(){
-        mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
+        mainViewModel = ViewModelProvider(requireActivity(),ViewModelFactory(DatabaseHelperImpl(DatabaseBuilder.getDbInstance(requireContext().applicationContext))))[MainViewModel::class.java]
     }
 
     private fun setupObserver(){
